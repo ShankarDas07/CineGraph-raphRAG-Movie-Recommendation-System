@@ -1,0 +1,112 @@
+# =============================================================
+#  CineGraph / movie-rec  -  root .gitignore (backend + frontend)
+# =============================================================
+
+# ---------- Secrets & environment files ----------
+# Real keys live here - NEVER commit them. Keep the *.example files.
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.jks
+
+# ---------- Backend: Java / Maven / Spring Boot ----------
+backend/target/
+backend/.mvn/wrapper/maven-wrapper.jar
+backend/dependency-reduced-pom.xml
+*.class
+*.jar
+*.war
+*.ear
+hs_err_pid*
+replay_pid*
+# Uncomment if you do not want to commit your local dataset:
+# backend/src/main/resources/data/movies.json
+
+# ---------- Frontend: Node / Vite / React ----------
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+frontend/coverage/
+frontend/.eslintcache
+*.tsbuildinfo
+node_modules/
+dist/
+.vite/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.npm/
+.pnpm-store/
+
+# ---------- Logs & runtime ----------
+*.log
+logs/
+*.pid
+*.seed
+*.pid.lock
+
+# ---------- IDEs & editors ----------
+.idea/
+*.iml
+*.iws
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.classpath
+.project
+.settings/
+.factorypath
+.apt_generated/
+.springBeans
+.sts4-cache/
+nbproject/
+*.swp
+*.swo
+*~
+
+# ---------- OS files ----------
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ---------- Misc build / temp ----------
+tmp/
+temp/
+*.bak
+*.tmp
+coverage/
+
+
+
+
+
+# Python virtual environment
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Python generated files
+.pytest_cache/
+.mypy_cache/
+
+# Database and data backups
+movie-data-migration/movies_backup.json
+movie-data-migration/*backup*.json
+movie-data-migration/*backup*.dump
+movie-data-migration/*backup*.sql
+
+# Generated Neo4j exports
+movie-data-migration/Neo4j-*.csv
+movie-data-migration/Neo4j-*.json
+

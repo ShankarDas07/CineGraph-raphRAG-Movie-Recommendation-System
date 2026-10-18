@@ -1,0 +1,62 @@
+spring:
+  application:
+    name: movie-recommendation-system
+  config:
+    # reads KEY=VALUE lines from backend/.env (same file format as your Node project)
+    import: optional:file:.env[.properties]
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+
+  neo4j:
+    uri: ${NEO4J_URI}
+    authentication:
+      username: ${NEO4J_USERNAME}
+      password: ${NEO4J_PASSWORD}
+
+  ai:
+    google:
+      genai:
+        api-key: ${GEMINI_API_KEY}
+        chat:
+#          model: gemini-2.5-flash
+          model: gemini-3.5-flash-lite
+          temperature: 0.0
+        embedding:
+          api-key: ${GEMINI_API_KEY}
+          text:
+            model: gemini-embedding-001
+            dimensions: 3072
+    vectorstore:
+      pinecone:
+        api-key: ${PINECONE_API_KEY}
+        index-name: ${PINECONE_INDEX_NAME}
+        namespace: ${PINECONE_NAMESPACE:}
+        content-field-name: text
+
+server:
+  port: 8080
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: always
+
+app:
+  indexing:
+    batch-size: 20          # movie blocks per Gemini call
+    concurrency: 4          # parallel Gemini calls
+    max-retries: 3
+    json-path: classpath:data/movies.json   # or file:/full/path/movies.json
+  similarity:
+    candidates: 50          # Pinecone topK
+    top: 10                 # final picks by LLM
+
+logging:
+  level:
+    com.shankar.movierec: DEBUG
