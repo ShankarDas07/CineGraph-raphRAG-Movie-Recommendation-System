@@ -1,18 +1,25 @@
 <!doctype html>
-<html lang="en" class="dark">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <meta name="theme-color" content="#06070d" />
     <meta name="description" content="CineGraph - ask a movie knowledge graph (Neo4j + Pinecone + Gemini) anything." />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
     <title>CineGraph - Movie Intelligence</title>
+    <!--
+      Runs before the page is painted, so a saved dark theme does not flash white on reload.
+      Keep the key ("cinegraph.theme") in sync with THEME_KEY in src/context/ThemeContext.tsx.
+    -->
+    <script>
+      try {
+        if (localStorage.getItem("cinegraph.theme") === "dark") {
+          document.documentElement.classList.add("dark");
+          document.documentElement.style.colorScheme = "dark";
+        }
+      } catch (e) {
+        /* storage blocked: stay on the light theme */
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

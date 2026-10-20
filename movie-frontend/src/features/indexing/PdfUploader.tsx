@@ -67,11 +67,11 @@ export function PdfUploader() {
           onDragLeave={() => setDragging(false)}
           onDrop={onDrop}
           className={cn(
-            "flex flex-col items-center gap-3 rounded-xl border-2 border-dashed p-8 text-center transition-colors",
-            dragging ? "border-primary bg-primary/10" : "border-border bg-background/30",
+            "flex flex-col items-center gap-3 rounded-md border-2 border-dashed p-8 text-center transition-colors",
+            dragging ? "border-primary bg-muted" : "border-input",
           )}
         >
-          <Upload className="size-8 text-primary" aria-hidden />
+          <Upload className="size-8" aria-hidden />
           <p className="text-sm text-muted-foreground">Drag & drop a PDF here, or</p>
           <Button variant="outline" onClick={() => inputRef.current?.click()}>
             Choose file
@@ -94,8 +94,8 @@ export function PdfUploader() {
         ) : null}
 
         {file ? (
-          <div className="flex items-center gap-3 rounded-xl border border-primary/30 bg-primary/10 p-3">
-            <FileText className="size-5 shrink-0 text-primary" />
+          <div className="flex items-center gap-3 rounded-md border bg-muted p-3">
+            <FileText className="size-5 shrink-0" />
             <div className="min-w-0 flex-1">
               <p className="truncate text-sm font-medium">{file.name}</p>
               <p className="text-xs text-muted-foreground">{formatBytes(file.size)}</p>
@@ -106,9 +106,9 @@ export function PdfUploader() {
           </div>
         ) : null}
 
-        {running ? <p className="text-sm text-warning">A job is already running. Wait for it to finish before starting another.</p> : null}
+        {running ? <p className="text-sm text-muted-foreground">A job is already running. Wait for it to finish before starting another.</p> : null}
 
-        <Button variant="accent" className="w-full sm:w-auto" disabled={!file || submitting || running} onClick={() => void start()}>
+        <Button className="w-full sm:w-auto" disabled={!file || submitting || running} onClick={() => void start()}>
           {submitting ? <Loader2 className="animate-spin" /> : <Upload />}
           {submitting ? "Uploading…" : "Upload & start indexing"}
         </Button>

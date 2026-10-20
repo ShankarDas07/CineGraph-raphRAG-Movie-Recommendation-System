@@ -2,7 +2,7 @@
   "name": "cinegraph-frontend",
   "private": true,
   "version": "1.0.0",
-  "description": "Futuristic React frontend for the Movie Recommendation (GraphRAG) backend",
+  "description": "React frontend for the Movie Recommendation (GraphRAG) backend",
   "type": "module",
   "engines": { "node": ">=18.18" },
   "scripts": {
@@ -22,7 +22,6 @@
     "@reduxjs/toolkit": "^2.5.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "framer-motion": "^11.15.0",
     "lucide-react": "^0.468.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
@@ -31,7 +30,6 @@
     "react-router-dom": "^6.28.0",
     "sonner": "^1.7.1",
     "tailwind-merge": "^2.6.0",
-    "tailwindcss-animate": "^1.0.7",
     "zod": "^3.24.1"
   },
   "devDependencies": {

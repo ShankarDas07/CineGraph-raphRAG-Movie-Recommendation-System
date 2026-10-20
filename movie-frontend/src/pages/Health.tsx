@@ -47,8 +47,8 @@ export default function Health() {
       {data ? (
         <div
           className={cn(
-            "mb-6 flex items-center gap-3 rounded-2xl border p-4",
-            data.allOk ? "border-success/40 bg-success/10 text-success" : "border-destructive/40 bg-destructive/10 text-destructive",
+            "mb-6 flex items-center gap-3 rounded-lg border p-4",
+            data.allOk ? "bg-muted" : "border-destructive text-destructive",
           )}
           role="status"
         >
@@ -62,16 +62,16 @@ export default function Health() {
 
       <div className="grid gap-4 sm:grid-cols-2">
         {!data && loading
-          ? Array.from({ length: 4 }).map((_, i) => <Skeleton key={i} className="h-32 rounded-2xl" />)
+          ? Array.from({ length: 4 }).map((_, i) => <Skeleton key={i} className="h-32" />)
           : services.map(([key, svc]) => {
               const meta = SERVICE_META[key] ?? { label: key, description: "Backend dependency", icon: Activity };
               const Icon = meta.icon;
               return (
-                <Card key={key} className={cn(svc.ok ? "border-success/20" : "border-destructive/40")}>
+                <Card key={key} className={cn(!svc.ok && "border-destructive")}>
                   <CardContent className="space-y-3 p-5">
                     <div className="flex items-center justify-between gap-3">
                       <div className="flex items-center gap-3">
-                        <div className={cn("flex size-10 items-center justify-center rounded-xl border", svc.ok ? "border-success/30 bg-success/10 text-success" : "border-destructive/30 bg-destructive/10 text-destructive")}>
+                        <div className={cn("flex size-10 items-center justify-center rounded-md border", svc.ok ? "bg-muted" : "border-destructive text-destructive")}>
                           <Icon className="size-5" />
                         </div>
                         <div>
@@ -84,7 +84,7 @@ export default function Health() {
                         {svc.ok ? "Online" : "Failing"}
                       </Badge>
                     </div>
-                    {svc.detail ? <p className="break-words rounded-lg bg-background/50 p-2.5 font-mono text-xs text-muted-foreground">{svc.detail}</p> : null}
+                    {svc.detail ? <p className="break-words rounded-md bg-muted p-2.5 font-mono text-xs text-muted-foreground">{svc.detail}</p> : null}
                   </CardContent>
                 </Card>
               );

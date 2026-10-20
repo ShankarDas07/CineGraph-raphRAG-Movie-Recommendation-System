@@ -21,15 +21,15 @@ export function CodeBlock({ code, label }: Props) {
   }
 
   return (
-    <div className="relative rounded-xl border border-border bg-background/70">
+    <div className="rounded-md border bg-muted">
       <div className="flex items-center justify-between border-b border-border px-3 py-1.5">
-        <span className="font-mono text-xs uppercase tracking-wider text-muted-foreground">{label ?? "code"}</span>
+        <span className="font-mono text-xs uppercase text-muted-foreground">{label ?? "code"}</span>
         <Button variant="ghost" size="sm" onClick={copy} aria-label="Copy to clipboard">
-          {copied ? <Check className="text-success" /> : <Copy />}
+          {copied ? <Check /> : <Copy />}
           {copied ? "Copied" : "Copy"}
         </Button>
       </div>
-      <pre className="max-h-80 overflow-auto p-3 font-mono text-xs leading-relaxed text-foreground/90">
+      <pre className="max-h-80 overflow-auto p-3 font-mono text-xs leading-relaxed text-foreground">
         <code>{code}</code>
       </pre>
     </div>

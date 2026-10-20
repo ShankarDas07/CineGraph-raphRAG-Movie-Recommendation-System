@@ -82,7 +82,7 @@ export default function Ask() {
         }
       />
 
-      <Card className="neon-border mb-6">
+      <Card className="mb-6">
         <CardContent className="space-y-4 p-4 sm:p-6">
           <div role="radiogroup" aria-label="Query mode" className="grid grid-cols-2 gap-2 lg:grid-cols-4">
             {MODES.map(({ value, label, hint, icon: Icon }) => (
@@ -93,13 +93,11 @@ export default function Ask() {
                 aria-checked={mode === value}
                 onClick={() => setMode(value)}
                 className={cn(
-                  "flex flex-col items-start gap-1 rounded-xl border p-3 text-left transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-                  mode === value
-                    ? "border-primary/60 bg-primary/10 shadow-neon"
-                    : "border-border bg-background/30 hover:border-primary/30",
+                  "flex flex-col items-start gap-1 rounded-md border p-3 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                  mode === value ? "border-primary bg-muted" : "hover:bg-muted",
                 )}
               >
-                <span className={cn("flex items-center gap-2 text-sm font-semibold", mode === value && "text-primary")}>
+                <span className="flex items-center gap-2 text-sm font-semibold">
                   <Icon className="size-4" /> {label}
                 </span>
                 <span className="text-xs text-muted-foreground">{hint}</span>
@@ -138,13 +136,13 @@ export default function Ask() {
                     key={ex}
                     type="button"
                     onClick={() => setValue("query", ex, { shouldValidate: true })}
-                    className="rounded-full border border-border px-3 py-1 text-xs text-muted-foreground transition-colors hover:border-primary/50 hover:text-primary"
+                    className="rounded-md border px-3 py-1 text-xs text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
                   >
                     {ex}
                   </button>
                 ))}
               </div>
-              <Button type="submit" variant="accent" size="lg" disabled={busy} className="w-full sm:w-auto">
+              <Button type="submit" size="lg" disabled={busy} className="w-full sm:w-auto">
                 {busy ? <Loader2 className="animate-spin" /> : <Send />}
                 {busy ? "Working…" : "Ask"}
               </Button>
@@ -154,8 +152,8 @@ export default function Ask() {
       </Card>
 
       {items.length === 0 ? (
-        <div className="rounded-2xl border border-dashed border-border p-10 text-center text-muted-foreground">
-          <Sparkles className="mx-auto mb-3 size-8 text-primary/70" aria-hidden />
+        <div className="rounded-lg border border-dashed p-10 text-center text-muted-foreground">
+          <Sparkles className="mx-auto mb-3 size-8" aria-hidden />
           <p>Ask your first question above. Answers and their Cypher internals will appear here.</p>
         </div>
       ) : (

@@ -130,7 +130,7 @@ function RawJsonForm({ onSubmit, busy }: { onSubmit: (movies: ExtractedMovie[]) 
         onChange={(e) => setText(e.target.value)}
       />
       <FieldError message={error ?? undefined} />
-      <Button variant="accent" disabled={busy || !text.trim()} onClick={() => void submit()}>
+      <Button disabled={busy || !text.trim()} onClick={() => void submit()}>
         {busy ? <Loader2 className="animate-spin" /> : <Send />}
         Index JSON
       </Button>
@@ -177,8 +177,8 @@ export function MoviesForm() {
       </CardHeader>
       <CardContent className="space-y-5">
         {result ? (
-          <div className="flex items-start gap-3 rounded-xl border border-success/40 bg-success/10 p-3 text-sm">
-            <CheckCircle2 className="mt-0.5 size-5 shrink-0 text-success" />
+          <div className="flex items-start gap-3 rounded-md border bg-muted p-3 text-sm">
+            <CheckCircle2 className="mt-0.5 size-5 shrink-0" />
             <p>
               Last request: received <b>{result.received}</b>, inserted in graph <b>{result.insertedInGraph}</b>, stored in vector store{" "}
               <b>{result.storedInVectorStore}</b>.
@@ -197,8 +197,8 @@ export function MoviesForm() {
               {fields.map((field, index) => {
                 const e = errors.movies?.[index];
                 return (
-                  <fieldset key={field.id} className="space-y-4 rounded-xl border border-border bg-background/30 p-4">
-                    <legend className="px-2 text-xs font-medium uppercase tracking-wider text-primary">Movie {index + 1}</legend>
+                  <fieldset key={field.id} className="space-y-4 rounded-md border p-4">
+                    <legend className="px-2 text-xs font-medium uppercase text-muted-foreground">Movie {index + 1}</legend>
                     <div className="grid gap-4 sm:grid-cols-[1fr_8rem]">
                       <div>
                         <Label htmlFor={`title-${field.id}`}>Title *</Label>
@@ -245,7 +245,7 @@ export function MoviesForm() {
                 <Button variant="outline" disabled={fields.length >= LIMITS.moviesMaxPerRequest} onClick={() => append(emptyMovie())}>
                   <Plus /> Add another movie
                 </Button>
-                <Button type="submit" variant="accent" disabled={busy}>
+                <Button type="submit" disabled={busy}>
                   {busy ? <Loader2 className="animate-spin" /> : <Send />}
                   {busy ? "Indexing…" : `Index ${fields.length} movie${fields.length === 1 ? "" : "s"}`}
                 </Button>

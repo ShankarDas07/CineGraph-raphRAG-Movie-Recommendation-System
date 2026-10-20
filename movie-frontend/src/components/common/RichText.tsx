@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 function inline(text: string, keyPrefix: string): ReactNode[] {
   return text.split(/(\*\*[^*]+\*\*)/g).map((part, i) =>
     part.startsWith("**") && part.endsWith("**") && part.length > 4 ? (
-      <strong key={`${keyPrefix}-${i}`} className="font-semibold text-foreground">
+      <strong key={`${keyPrefix}-${i}`} className="font-semibold">
         {part.slice(2, -2)}
       </strong>
     ) : (
@@ -23,7 +23,7 @@ export function RichText({ text }: { text: string }) {
     if (para.length) {
       const key = `p${blocks.length}`;
       blocks.push(
-        <p key={key} className="leading-relaxed text-foreground/90">
+        <p key={key} className="leading-relaxed">
           {inline(para.join(" "), key)}
         </p>,
       );
@@ -40,11 +40,11 @@ export function RichText({ text }: { text: string }) {
       ));
       blocks.push(
         list.ordered ? (
-          <ol key={key} className="ml-5 list-decimal space-y-1 text-foreground/90 marker:text-primary">
+          <ol key={key} className="ml-5 list-decimal space-y-1">
             {items}
           </ol>
         ) : (
-          <ul key={key} className="ml-5 list-disc space-y-1 text-foreground/90 marker:text-primary">
+          <ul key={key} className="ml-5 list-disc space-y-1">
             {items}
           </ul>
         ),

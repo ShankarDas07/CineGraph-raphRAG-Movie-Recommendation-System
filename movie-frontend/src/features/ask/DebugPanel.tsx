@@ -29,12 +29,12 @@ export function DebugPanel({ debug }: { debug: Debug }) {
   const rowCount = typeof debug.rowCount === "number" ? debug.rowCount : rows.length;
 
   return (
-    <div className="rounded-xl border border-border bg-background/40">
+    <div className="rounded-md border">
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
         aria-expanded={open}
-        className="flex w-full items-center justify-between gap-2 px-3 py-2.5 text-left text-sm text-muted-foreground transition-colors hover:text-primary"
+        className="flex w-full items-center justify-between gap-2 px-3 py-2.5 text-left text-sm text-muted-foreground transition-colors hover:text-foreground"
       >
         <span className="flex items-center gap-2">
           <Terminal className="size-4" /> Query internals · {rowCount} row{rowCount === 1 ? "" : "s"}
@@ -43,7 +43,7 @@ export function DebugPanel({ debug }: { debug: Debug }) {
       </button>
 
       {open ? (
-        <div className="border-t border-border p-3">
+        <div className="border-t p-3">
           <Tabs defaultValue={cypher ? "cypher" : "rows"}>
             <TabsList>
               {cypher ? <TabsTrigger value="cypher">Cypher</TabsTrigger> : null}
@@ -70,7 +70,7 @@ export function DebugPanel({ debug }: { debug: Debug }) {
               {rows.length === 0 ? (
                 <p className="text-sm text-muted-foreground">No rows returned.</p>
               ) : (
-                <div className="max-h-80 overflow-auto rounded-lg border border-border">
+                <div className="max-h-80 overflow-auto rounded-md border">
                   <table className="w-full min-w-max text-left text-xs">
                     <thead className="sticky top-0 bg-muted text-muted-foreground">
                       <tr>
@@ -83,7 +83,7 @@ export function DebugPanel({ debug }: { debug: Debug }) {
                     </thead>
                     <tbody>
                       {rows.map((r, i) => (
-                        <tr key={i} className="border-t border-border/60 odd:bg-white/[0.02]">
+                        <tr key={i} className="border-t odd:bg-muted/50">
                           {columns.map((c) => (
                             <td key={c} className="max-w-xs truncate px-3 py-1.5 font-mono" title={cell(r[c])}>
                               {cell(r[c])}

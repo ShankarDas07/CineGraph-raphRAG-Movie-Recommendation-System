@@ -34,14 +34,14 @@ export function JsonIndexer() {
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-5">
-        <div className="flex items-center justify-between gap-4 rounded-xl border border-border bg-background/30 p-4">
+        <div className="flex items-center justify-between gap-4 rounded-md border p-4">
           <div>
             <Label htmlFor="sw-graph">Build Neo4j graph</Label>
             <p className="mt-1 text-xs text-muted-foreground">graph=true</p>
           </div>
           <Switch id="sw-graph" checked={graph} onCheckedChange={setGraph} />
         </div>
-        <div className="flex items-center justify-between gap-4 rounded-xl border border-border bg-background/30 p-4">
+        <div className="flex items-center justify-between gap-4 rounded-md border p-4">
           <div>
             <Label htmlFor="sw-vectors">Store Pinecone vectors</Label>
             <p className="mt-1 text-xs text-muted-foreground">vectors=true</p>
@@ -54,9 +54,9 @@ export function JsonIndexer() {
             Enable at least one of graph or vectors.
           </p>
         ) : null}
-        {running ? <p className="text-sm text-warning">A job is already running.</p> : null}
+        {running ? <p className="text-sm text-muted-foreground">A job is already running.</p> : null}
 
-        <Button variant="accent" disabled={invalid || submitting || running} onClick={() => void start()} className="w-full sm:w-auto">
+        <Button disabled={invalid || submitting || running} onClick={() => void start()} className="w-full sm:w-auto">
           {submitting ? <Loader2 className="animate-spin" /> : <FileJson />}
           {submitting ? "Starting…" : "Start JSON indexing"}
         </Button>

@@ -27,7 +27,7 @@ const STATE_BADGE = {
 
 function Counter({ label, value }: { label: string; value: number }) {
   return (
-    <div className="rounded-xl border border-border bg-background/40 p-3">
+    <div className="rounded-md border bg-muted p-3">
       <p className="text-xs text-muted-foreground">{label}</p>
       <p className="text-xl font-bold tabular-nums">{formatNumber(value)}</p>
     </div>
@@ -81,11 +81,11 @@ export function StatusPanel() {
                   <li
                     key={st.key}
                     className={cn(
-                      "flex items-center gap-2 rounded-lg border px-2.5 py-2 text-xs",
-                      current && "border-warning/50 bg-warning/10 text-warning",
-                      done && "border-success/40 bg-success/10 text-success",
-                      failed && "border-destructive/50 bg-destructive/10 text-destructive",
-                      !current && !done && !failed && "border-border text-muted-foreground",
+                      "flex items-center gap-2 rounded-md border px-2.5 py-2 text-xs",
+                      current && "border-dashed border-foreground font-medium",
+                      done && "border-foreground bg-muted font-medium",
+                      failed && "border-destructive text-destructive",
+                      !current && !done && !failed && "text-muted-foreground",
                     )}
                   >
                     {failed ? (
@@ -125,7 +125,7 @@ export function StatusPanel() {
             </div>
 
             {status.message ? (
-              <p className={cn("break-words rounded-lg border px-3 py-2 text-sm", status.state === "FAILED" ? "border-destructive/40 bg-destructive/10" : "border-border bg-background/40")}>
+              <p className={cn("break-words rounded-md border px-3 py-2 text-sm", status.state === "FAILED" ? "border-destructive" : "bg-muted")}>
                 {status.message}
               </p>
             ) : null}
@@ -133,15 +133,15 @@ export function StatusPanel() {
             <dl className="grid grid-cols-1 gap-2 text-xs text-muted-foreground sm:grid-cols-3">
               <div>
                 <dt>Started</dt>
-                <dd className="text-foreground/90">{formatDateTime(status.startedAt)}</dd>
+                <dd className="text-foreground">{formatDateTime(status.startedAt)}</dd>
               </div>
               <div>
                 <dt>Finished</dt>
-                <dd className="text-foreground/90">{formatDateTime(status.finishedAt)}</dd>
+                <dd className="text-foreground">{formatDateTime(status.finishedAt)}</dd>
               </div>
               <div>
                 <dt>Elapsed</dt>
-                <dd className="text-foreground/90">{elapsed !== null ? formatDuration(elapsed) : "-"}</dd>
+                <dd className="text-foreground">{elapsed !== null ? formatDuration(elapsed) : "-"}</dd>
               </div>
             </dl>
           </>

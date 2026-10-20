@@ -2,23 +2,26 @@ import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
-const badgeVariants = cva(
-  "inline-flex items-center gap-1 rounded-full border px-2.5 py-0.5 text-xs font-medium transition-colors",
-  {
-    variants: {
-      variant: {
-        default: "border-primary/40 bg-primary/10 text-primary",
-        secondary: "border-secondary/40 bg-secondary/15 text-secondary",
-        accent: "border-accent/40 bg-accent/10 text-accent",
-        success: "border-success/40 bg-success/10 text-success",
-        warning: "border-warning/40 bg-warning/10 text-warning",
-        destructive: "border-destructive/40 bg-destructive/10 text-destructive",
-        outline: "border-border text-muted-foreground",
-      },
+/**
+ * Black-and-white badges. Meaning is shown with fill / border style, not with colour:
+ *   success     = filled (finished / online)
+ *   warning     = dashed border (in progress)
+ *   default     = grey box
+ *   outline     = plain border
+ *   destructive = red text + border (errors)
+ */
+const badgeVariants = cva("inline-flex items-center gap-1 rounded-md border px-2 py-0.5 text-xs font-medium", {
+  variants: {
+    variant: {
+      default: "border-border bg-muted text-foreground",
+      outline: "border-border text-muted-foreground",
+      success: "border-foreground bg-foreground text-background",
+      warning: "border-dashed border-foreground text-foreground",
+      destructive: "border-destructive text-destructive",
     },
-    defaultVariants: { variant: "default" },
   },
-);
+  defaultVariants: { variant: "default" },
+});
 
 export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement>, VariantProps<typeof badgeVariants> {}
 

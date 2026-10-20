@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { BookOpen, Film, Loader2, Network, Trash2 } from "lucide-react";
 import { ErrorState } from "@/components/common/ErrorState";
 import { RichText } from "@/components/common/RichText";
@@ -11,10 +10,10 @@ import { askQuestion, removeItem, type QueryHistoryItem } from "@/store/slices/q
 import { useAppDispatch } from "@/store/hooks";
 import { DebugPanel } from "./DebugPanel";
 
-const TYPE_META: Record<string, { label: string; source: string; variant: "default" | "accent" | "secondary"; icon: typeof Network }> = {
-  factual: { label: "Factual", source: "Neo4j graph", variant: "default", icon: Network },
-  similarity: { label: "Similarity", source: "Pinecone vectors", variant: "accent", icon: Film },
-  descriptive: { label: "Descriptive", source: "Pinecone vectors", variant: "secondary", icon: BookOpen },
+const TYPE_META: Record<string, { label: string; source: string; icon: typeof Network }> = {
+  factual: { label: "Factual", source: "Neo4j graph", icon: Network },
+  similarity: { label: "Similarity", source: "Pinecone vectors", icon: Film },
+  descriptive: { label: "Descriptive", source: "Pinecone vectors", icon: BookOpen },
 };
 
 export function AnswerCard({ item }: { item: QueryHistoryItem }) {
@@ -24,8 +23,7 @@ export function AnswerCard({ item }: { item: QueryHistoryItem }) {
   const Icon = meta?.icon ?? Network;
 
   return (
-    <motion.div layout initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
-      <Card className="neon-border overflow-hidden">
+    <Card className="overflow-hidden">
         <CardContent className="space-y-4 p-5 sm:p-6">
           <div className="flex items-start justify-between gap-3">
             <div className="min-w-0">
@@ -37,7 +35,7 @@ export function AnswerCard({ item }: { item: QueryHistoryItem }) {
                   </Badge>
                 ) : null}
                 {meta ? (
-                  <Badge variant={meta.variant}>
+                  <Badge>
                     <Icon className="size-3" /> {meta.label} · {meta.source}
                   </Badge>
                 ) : res ? (
@@ -84,6 +82,5 @@ export function AnswerCard({ item }: { item: QueryHistoryItem }) {
           ) : null}
         </CardContent>
       </Card>
-    </motion.div>
   );
 }

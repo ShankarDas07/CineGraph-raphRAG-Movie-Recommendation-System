@@ -30,7 +30,6 @@ export default defineConfig(({ mode }) => {
           manualChunks: {
             react: ["react", "react-dom", "react-router-dom"],
             state: ["@reduxjs/toolkit", "react-redux"],
-            motion: ["framer-motion"],
           },
         },
       },

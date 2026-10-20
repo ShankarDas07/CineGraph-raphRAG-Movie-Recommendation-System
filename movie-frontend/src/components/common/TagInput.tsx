@@ -42,12 +42,12 @@ export function TagInput({ id, value, onChange, placeholder, maxItems = 50, clas
   return (
     <div
       className={cn(
-        "flex min-h-10 w-full flex-wrap items-center gap-1.5 rounded-lg border border-input bg-background/60 px-2 py-1.5 transition-colors focus-within:border-primary/60 focus-within:ring-2 focus-within:ring-ring/40",
+        "flex min-h-10 w-full flex-wrap items-center gap-1.5 rounded-md border border-input bg-background px-2 py-1.5 focus-within:ring-2 focus-within:ring-ring",
         className,
       )}
     >
       {value.map((tag) => (
-        <span key={tag} className="inline-flex items-center gap-1 rounded-md border border-primary/30 bg-primary/10 px-2 py-0.5 text-xs text-primary">
+        <span key={tag} className="inline-flex items-center gap-1 rounded-sm border bg-muted px-2 py-0.5 text-xs">
           {tag}
           <button
             type="button"
@@ -66,7 +66,7 @@ export function TagInput({ id, value, onChange, placeholder, maxItems = 50, clas
         onKeyDown={onKeyDown}
         onBlur={() => commit(draft)}
         placeholder={value.length === 0 ? placeholder : ""}
-        className="min-w-[8ch] flex-1 bg-transparent px-1 py-0.5 text-sm outline-none placeholder:text-muted-foreground/70"
+        className="min-w-[8ch] flex-1 bg-transparent px-1 py-0.5 text-sm outline-none placeholder:text-muted-foreground"
       />
     </div>
   );
